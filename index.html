@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mercedes-Benz France | Voitures neuves et occasions — Démo</title>
+<title>Mercedes-Benz Maroc | La Maison de l'étoile — Voitures neuves</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='white' stroke-width='6'/%3E%3Cpath d='M50 50 L50 10 M50 50 L16 70 M50 50 L84 70' stroke='white' stroke-width='6'/%3E%3C/svg%3E">
-<meta name="description" content="Copie d'étude de la page d'accueil Mercedes-Benz France, reconstruite avec le modèle VERTEX « Websites in 2026 » : film défilant sur canvas, préloader, grain cinéma.">
+<meta name="description" content="Mercedes-Benz Maroc : la gamme, les prix en dirhams, le configurateur en direct, le stock et les showrooms Auto Nejma — Casablanca, Rabat, Tanger, Marrakech, Agadir, Fès.">
 <style>
 :root{--noir:#000;--fond:#0a0a0a;--blanc:#fff;--gris:#a8a8a8;--gris2:#6f6f6f;--ligne:#262626;--bleu:#00adef;--serif:"Times New Roman",serif}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -183,6 +183,54 @@ footer{background:#000;border-top:1px solid var(--ligne)}
 .fbot{max-width:1560px;margin:0 auto;padding:26px 28px 44px;display:flex;gap:26px;flex-wrap:wrap;color:var(--gris2);font-size:13px;border-top:1px solid var(--ligne)}
 .fbot .demo{color:var(--bleu)}
 
+
+/* ---------- LA MAISON / CONFIG / STOCK / ESSAI / BARRE MOBILE ---------- */
+.maison{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+@media(max-width:860px){.maison{grid-template-columns:1fr}}
+.maison .ph{overflow:hidden}.maison .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.cfg{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:start}
+@media(max-width:960px){.cfg{grid-template-columns:1fr}}
+.cfg .preview{position:sticky;top:96px}
+@media(max-width:960px){.cfg .preview{position:relative;top:0}}
+.cfg .preview .ph{overflow:hidden;border:1px solid var(--ligne)}
+.cfg .preview img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:filter .5s}
+.cfg h4{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);margin:26px 0 12px}
+.cfg h4:first-child{margin-top:0}
+.choices{display:flex;gap:9px;flex-wrap:wrap}
+.choices button{background:#111;color:#eee;border:1px solid #3a3a3a;padding:11px 18px;font-size:14px;border-radius:99px;transition:.2s}
+.choices button.on{background:var(--bleu);border-color:var(--bleu);color:#000;font-weight:600}
+.choices button small{opacity:.75;font-size:12px}
+.swatches{display:flex;gap:12px}
+.swatches button{width:42px;height:42px;border-radius:50%;border:2px solid #333;padding:0;transition:.2s}
+.swatches button.on{border-color:var(--bleu);transform:scale(1.12)}
+.opts{display:grid;gap:9px}
+.opts label{display:flex;justify-content:space-between;gap:14px;background:#0d0d0d;border:1px solid var(--ligne);padding:14px 18px;font-size:14.5px;cursor:pointer}
+.opts label:has(input:checked){border-color:var(--bleu)}
+.opts input{accent-color:var(--bleu);width:18px;height:18px}
+.total{background:#0d0d0d;border:1px solid var(--bleu);padding:24px 26px;margin-top:28px}
+.total .tt{font-family:var(--serif);font-size:clamp(28px,3vw,38px)}
+.total .tm{color:var(--gris);margin-top:6px;font-size:14.5px}
+.total .tm b{color:var(--bleu);font-size:17px}
+.stock{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:960px){.stock{grid-template-columns:1fr}}
+.ville-badge{position:absolute;top:16px;left:16px;z-index:3;background:var(--bleu);color:#000;font-weight:700;font-size:12.5px;padding:7px 14px;border-radius:99px;letter-spacing:.06em}
+.card .ph{position:relative}
+.shows{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+@media(max-width:960px){.shows{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.shows{grid-template-columns:1fr}}
+.shows div{border:1px solid var(--ligne);padding:26px;background:#0b0b0b}
+.shows h3{font-family:var(--serif);font-weight:400;font-size:23px;margin-bottom:8px}
+.shows p{color:var(--gris);font-size:14px;line-height:1.6}
+.shows a{color:var(--bleu);font-size:14px;display:inline-block;margin-top:12px}
+.essai{display:grid;gap:12px}
+.essai input,.essai select{background:#111;border:1px solid #333;color:#fff;padding:15px 18px;font-size:15.5px;outline:none;width:100%}
+.essai input:focus,.essai select:focus{border-color:var(--bleu)}
+.essai .ok{display:none;background:#06222e;border:1px solid var(--bleu);padding:18px 20px;font-size:15px;line-height:1.65}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:150;background:rgba(0,0,0,.94);backdrop-filter:blur(12px);border-top:1px solid var(--ligne);display:none}
+.mbar a{flex:1;text-align:center;padding:15px 4px;font-size:14px;border-left:1px solid var(--ligne)}
+.mbar a:first-child{border-left:0;background:var(--bleu);color:#000;font-weight:700}
+@media(max-width:860px){.mbar{display:flex}body{padding-bottom:52px}}
+
 /* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -209,7 +257,9 @@ footer{background:#000;border-top:1px solid var(--ligne)}
       <span class="word">Mercedes-Benz</span>
     </a>
     <nav class="main">
+      <a href="#maison">La Maison</a>
       <a href="#modeles">Nos modèles</a>
+      <a href="#configurateur">Configurateur</a>
       <a href="#offres">Offres</a>
       <a href="#electrique">Électrique</a>
       <a href="#univers">Univers</a>
@@ -231,9 +281,9 @@ footer{background:#000;border-top:1px solid var(--ligne)}
     <div class="film-shade"></div>
     <div class="film-copy">
       <div class="phase on" data-ph="0">
-        <div class="kicker">Nouveau · 100 % électrique</div>
+        <div class="kicker">Mercedes-Benz Maroc · Nouveau · 100 % électrique</div>
         <h1>Le nouveau GLC électrique.</h1>
-        <p class="sub">L'icône des SUV Mercedes-Benz devient électrique. Jusqu'à 713 km d'autonomie, 489 ch, et l'intelligence MB.OS à bord.</p>
+        <p class="sub">L'icône des SUV Mercedes-Benz arrive au Maroc. Jusqu'à 713 km d'autonomie, 489 ch, et l'intelligence MB.OS à bord — à découvrir au flagship de la Corniche de Casablanca.</p>
         <div class="ctas"><a class="btn solid" href="#modeles">Découvrir le GLC</a><a class="btn ghost" href="#distributeur">Réserver un essai</a></div>
       </div>
       <div class="phase" data-ph="1">
@@ -243,7 +293,7 @@ footer{background:#000;border-top:1px solid var(--ligne)}
         <div class="chips"><span>489 ch</span><span>713 km WLTP</span><span>Architecture 800 V</span><span>Recharge 10–80 % en 29 min</span></div>
       </div>
       <div class="phase" data-ph="2">
-        <div class="kicker">À partir de 71 900 €</div>
+        <div class="kicker">À partir de 785 000 MAD</div>
         <h1>Prêt à prendre la route.</h1>
         <p class="sub">Configurez le vôtre, ou trouvez-le dès aujourd'hui dans le stock en ligne.</p>
         <div class="ctas"><a class="btn solid" href="#offres">Voir les offres</a><a class="btn ghost" href="#modeles">Tous les modèles</a></div>
@@ -261,6 +311,25 @@ footer{background:#000;border-top:1px solid var(--ligne)}
   <a href="#distributeur"><b>Réserver un essai</b><span>→</span></a>
   <a href="#services"><b>Estimation de reprise</b><span>→</span></a>
 </div></div>
+
+
+<!-- LA MAISON MERCEDES-BENZ MAROC -->
+<section class="bloc" id="maison" style="padding-bottom:30px">
+  <div class="maison">
+    <div class="ph rv"><img src="assets/interior-card.jpg" alt="Flagship Mercedes-Benz Corniche de Casablanca — intérieur"></div>
+    <div class="rv">
+      <div class="kicker">La Maison de l'étoile · Maroc</div>
+      <h2 class="titre">Le flagship de la Corniche de Casablanca.</h2>
+      <p style="color:var(--gris);line-height:1.7;margin-top:16px;font-size:16px">Pour ses 60 ans au Maroc, Auto Nejma — distributeur général de Mercedes-Benz depuis 1963 — a ouvert sa maison mère sur la Corniche de Casablanca : 4 000 m² sur cinq niveaux, un rooftop face à l'océan, des bornes de recharge et toute la gamme, de la Classe A à Maybach.</p>
+      <div class="stats" style="margin-top:28px">
+        <div class="stat"><b><span class="cnt" data-n="60">0</span> ans</b><span>Auto Nejma au Maroc</span></div>
+        <div class="stat"><b><span class="cnt" data-n="6">0</span></b><span>Showrooms au Royaume</span></div>
+        <div class="stat"><b><span class="cnt" data-n="4000">0</span> m²</b><span>Flagship Corniche</span></div>
+      </div>
+      <div class="ctas"><a class="btn solid" href="#distributeur">Nos showrooms</a><a class="btn ghost" href="#configurateur">Configurer la vôtre</a></div>
+    </div>
+  </div>
+</section>
 
 <!-- MODELES -->
 <section class="bloc" id="modeles">
@@ -280,45 +349,90 @@ footer{background:#000;border-top:1px solid var(--ligne)}
       <div class="ph"><img src="assets/hero-card.jpg" alt="Nouveau GLC électrique argent"></div>
       <div class="tx"><div class="cat">SUV · Électrique</div><h3>GLC électrique</h3>
       <p>Le best-seller devient 100 % électrique : 489 ch, jusqu'à 713 km d'autonomie WLTP et la recharge ultra-rapide 800 V.</p>
-      <div class="prix"><small>À partir de</small>71 900 €</div>
+      <div class="prix"><small>À partir de</small>785 000 MAD</div>
       <div class="links"><a href="#offres">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="berline elec">
       <div class="ph"><img src="assets/eqs-card.jpg" alt="EQS berline électrique blanche"></div>
       <div class="tx"><div class="cat">Berline · Électrique</div><h3>EQS</h3>
       <p>La Classe S électrique : silhouette d'une fluidité record, MBUX Hyperscreen et jusqu'à 809 km d'autonomie.</p>
-      <div class="prix"><small>À partir de</small>107 350 €</div>
+      <div class="prix"><small>À partir de</small>1 165 000 MAD</div>
       <div class="links"><a href="#electrique">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="suv icone">
       <div class="ph"><img src="assets/g-card.jpg" alt="Classe G noir sur route côtière"></div>
       <div class="tx"><div class="cat">SUV · Icône</div><h3>Classe G</h3>
       <p>Plus forte que le temps. Le G reste le G : silhouette inchangée depuis 1979, capacités tout-terrain légendaires, désormais aussi en électrique.</p>
-      <div class="prix"><small>Édition</small>Stronger Than Time</div>
+      <div class="prix"><small>À partir de</small>1 450 000 MAD</div>
       <div class="links"><a href="#classeg">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="berline">
       <div class="ph"><img src="assets/hero-card.jpg" alt="Classe C berline" style="filter:hue-rotate(-14deg) saturate(.72) brightness(.92)"></div>
       <div class="tx"><div class="cat">Berline</div><h3>Nouvelle Classe C</h3>
       <p>La berline la plus vendue de la marque se modernise : design athlétique, motorisations électrifiées et MB.OS à bord.</p>
-      <div class="prix"><small>À partir de</small>55 300 €</div>
+      <div class="prix"><small>À partir de</small>599 000 MAD</div>
       <div class="links"><a href="#offres">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
   </div>
 </section>
 
+
+<!-- CONFIGURATEUR -->
+<section class="bloc" id="configurateur" style="padding-top:40px">
+  <div class="sec-head rv"><h2 class="titre">Configurez la vôtre.</h2><p>Modèle, couleur, finition, options : le prix en dirhams se calcule en direct. Sans inscription, sans attente — là où le site officiel vous fait remplir un formulaire, ici tout est instantané.</p></div>
+  <div class="cfg rv">
+    <div class="preview">
+      <div class="ph"><img id="cfgImg" src="assets/hero-card.jpg" alt="Aperçu du modèle configuré"></div>
+      <div class="total">
+        <div style="font-size:12.5px;letter-spacing:.26em;color:var(--gris)">TOTAL · <span id="cfgName">GLC électrique</span> · <span id="cfgColorName">Argent high-tech</span></div>
+        <div class="tt" id="cfgTotal">785 000 MAD</div>
+        <div class="tm">ou environ <b id="cfgMonth">12 700 MAD/mois</b> en LLD 37 mois (estimation)</div>
+        <div class="ctas" style="margin-top:18px"><a class="btn solid" href="#essai">Réserver un essai de ce modèle</a></div>
+      </div>
+    </div>
+    <div>
+      <h4>1 · Modèle</h4>
+      <div class="choices" id="cfgModels"></div>
+      <h4>2 · Couleur</h4>
+      <div class="swatches" id="cfgColors"></div>
+      <div style="color:var(--gris);font-size:13.5px;margin-top:10px" id="cfgColorLabel">Argent high-tech métallisé</div>
+      <h4>3 · Finition</h4>
+      <div class="choices" id="cfgTrims"></div>
+      <h4>4 · Options</h4>
+      <div class="opts" id="cfgOpts"></div>
+    </div>
+  </div>
+</section>
+
 <!-- OFFRES (textes repris de la page officielle) -->
 <div class="offres"><section class="bloc" style="padding-top:90px;padding-bottom:90px" id="offres">
-  <div class="sec-head rv"><h2 class="titre">Les offres du moment.</h2><p>Location Longue Durée, sans apport, chez les distributeurs participants. Conditions complètes en bas de page.</p></div>
+  <div class="sec-head rv"><h2 class="titre">Les offres du moment.</h2><p>Location Longue Durée, sans apport, dans le réseau Auto Nejma. Loyers convertis en dirhams à titre indicatif — conditions complètes en bas de page.</p></div>
   <div class="orow rv">
-    <div class="offre"><div class="tag">LLD · 37 loyers</div><h3>Classe A Edition 140</h3><p class="loyer">Classe A 180 Edition 140, 45 000 km, sans apport<br><b>350 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
-    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>GLB Hybride</h3><p class="loyer">Nouveau GLB 200 hybride Progressive Line, 45 000 km<br><b>615 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
-    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>GLB électrique</h3><p class="loyer">GLB 200 électrique Progressive Line, prime déduite<br><b>545 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
-    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>CLA Shooting Brake Hybride</h3><p class="loyer">CLA Shooting Brake 200 hybride Progressive Line<br><b>530 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
-    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>CLA Shooting Brake électrique</h3><p class="loyer">CLA Shooting Brake 200 électrique Progressive Line<br><b>550 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
-    <div class="offre"><div class="tag">Hybride</div><h3>CLA Berline Hybride</h3><p class="loyer">Nouveau CLA Berline hybride 200 Progressive Line<br><b>520 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">LLD · 37 loyers</div><h3>Classe A Edition 140</h3><p class="loyer">Classe A 180 Edition 140, 45 000 km, sans apport<br><b>3 800 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>GLB Hybride</h3><p class="loyer">Nouveau GLB 200 hybride Progressive Line, 45 000 km<br><b>6 700 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>GLB électrique</h3><p class="loyer">GLB 200 électrique Progressive Line, prime déduite<br><b>5 900 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>CLA Shooting Brake Hybride</h3><p class="loyer">CLA Shooting Brake 200 hybride Progressive Line<br><b>5 750 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>CLA Shooting Brake électrique</h3><p class="loyer">CLA Shooting Brake 200 électrique Progressive Line<br><b>5 950 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Hybride</div><h3>CLA Berline Hybride</h3><p class="loyer">Nouveau CLA Berline hybride 200 Progressive Line<br><b>5 650 MAD</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
   </div>
 </section></div>
+
+
+<!-- STOCK MAROC -->
+<section class="bloc" id="stock" style="padding-top:30px">
+  <div class="sec-head rv"><h2 class="titre">Disponibles au Maroc, tout de suite.</h2><p>Trois étoiles prêtes à partir dans le réseau Auto Nejma. Réservez la vôtre avant qu'elle ne roule sans vous.</p></div>
+  <div class="stock">
+    <article class="card rv"><div class="ph"><span class="ville-badge">CASABLANCA · CORNICHE</span><img src="assets/hero-card.jpg" alt="GLC électrique en stock à Casablanca"></div>
+      <div class="tx"><div class="cat">Stock · Électrique</div><h3>GLC électrique</h3><p>Argent high-tech, Progressive Line. Au flagship de la Corniche, prêt pour livraison immédiate.</p>
+      <div class="prix"><small>Prix Maroc</small>785 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
+    <article class="card rv"><div class="ph"><span class="ville-badge">TANGER</span><img src="assets/g-card.jpg" alt="Classe G en stock à Tanger"></div>
+      <div class="tx"><div class="cat">Stock · Icône</div><h3>Classe G</h3><p>Noir obsidienne, intérieur cuir noir. L'icône attend à Tanger — une seule unité.</p>
+      <div class="prix"><small>Prix Maroc</small>1 450 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
+    <article class="card rv"><div class="ph"><span class="ville-badge">RABAT</span><img src="assets/eqs-card.jpg" alt="EQS en stock à Rabat"></div>
+      <div class="tx"><div class="cat">Stock · Électrique</div><h3>EQS</h3><p>Blanc polaire, MBUX Hyperscreen. La limousine électrique, disponible à Rabat.</p>
+      <div class="prix"><small>Prix Maroc</small>1 165 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
+  </div>
+</section>
 
 <!-- MARQUEE -->
 <div class="marquee"><div class="track" id="mq"></div></div>
@@ -397,13 +511,23 @@ footer{background:#000;border-top:1px solid var(--ligne)}
   </div>
 </section>
 
-<!-- DISTRIBUTEUR -->
+<!-- DISTRIBUTEUR / ESSAI -->
 <div class="distri" id="distributeur"><div class="distri-in">
-  <div class="rv"><div class="kicker">Près de chez vous</div><h2 class="titre" style="color:#fff">Trouvez votre distributeur.</h2>
-  <p style="color:var(--gris);margin-top:14px;line-height:1.6;max-width:48ch">Essai, reprise, financement : les équipes Mercedes-Benz vous accueillent partout en France.</p></div>
-  <form class="rv" onsubmit="event.preventDefault();this.querySelector('button').textContent='Recherche…';setTimeout(()=>{this.querySelector('button').textContent='3 distributeurs trouvés ✓'},900)">
-    <input type="text" placeholder="Ville ou code postal" aria-label="Ville ou code postal">
-    <button type="submit">Rechercher</button>
+  <div class="rv"><div class="kicker">Essai · Maroc</div><h2 class="titre" style="color:#fff">Réservez votre essai.</h2>
+  <p style="color:var(--gris);margin-top:14px;line-height:1.6;max-width:48ch">Choisissez votre ville et votre modèle : un conseiller Auto Nejma vous rappelle pour confirmer le rendez-vous. Réponse le jour même, aux heures d'ouverture.</p>
+  <div class="shows" style="grid-template-columns:1fr 1fr;margin-top:30px">
+    <div><h3>Casablanca</h3><p>Flagship Corniche — la Maison Mercedes-Benz Maroc</p><a href="https://www.google.com/maps/search/Mercedes-Benz+Auto+Nejma+Casablanca" target="_blank" rel="noopener">Itinéraire →</a></div>
+    <div><h3>Rabat</h3><p>Showroom Auto Nejma Rabat</p><a href="https://www.google.com/maps/search/Mercedes-Benz+Auto+Nejma+Rabat" target="_blank" rel="noopener">Itinéraire →</a></div>
+    <div><h3>Tanger</h3><p>Showroom Auto Nejma Tanger</p><a href="https://www.google.com/maps/search/Mercedes-Benz+Auto+Nejma+Tanger" target="_blank" rel="noopener">Itinéraire →</a></div>
+    <div><h3>Marrakech · Agadir · Fès</h3><p>Le réseau Auto Nejma dans tout le Royaume</p><a href="https://www.google.com/maps/search/Mercedes-Benz+Auto+Nejma+Maroc" target="_blank" rel="noopener">Itinéraire →</a></div>
+  </div></div>
+  <form class="essai rv" id="essai" onsubmit="return sendEssai(event)">
+    <select id="eVille" aria-label="Ville"><option>Casablanca — Corniche (Flagship)</option><option>Rabat</option><option>Tanger</option><option>Marrakech</option><option>Agadir</option><option>Fès</option></select>
+    <select id="eModele" aria-label="Modèle"><option>GLC électrique</option><option>EQS</option><option>Classe G</option><option>Nouvelle Classe C</option><option>Classe A</option><option>GLB</option><option>CLA</option></select>
+    <input id="eNom" type="text" placeholder="Votre nom" required aria-label="Votre nom">
+    <input id="eTel" type="tel" placeholder="Votre téléphone (06…)" required aria-label="Votre téléphone">
+    <button type="submit" style="background:var(--bleu);border:0;color:#000;font-weight:700;padding:16px;font-size:15.5px">Demander mon essai</button>
+    <div class="ok" id="eOk"></div>
   </form>
 </div></div>
 
@@ -416,15 +540,18 @@ footer{background:#000;border-top:1px solid var(--ligne)}
     <div><h4>Entreprise</h4><a href="#">Mercedes-Benz Group</a><a href="#">Carrières</a><a href="#">Presse</a><a href="#">Développement durable</a><a href="#">Contact</a></div>
   </div>
   <div class="legal">
-    <b style="color:#8a8a8a">Mentions légales des offres (reprises de la page d'accueil officielle).</b><br>
+    <b style="color:#8a8a8a">Mercedes-Benz au Maroc — réseau Auto Nejma (distributeur général depuis 1963) : Casablanca Corniche (flagship), Rabat, Tanger, Marrakech, Agadir, Fès. Prix Maroc affichés en dirhams (MAD), convertis à titre indicatif.</b><br><br><b style="color:#8a8a8a">Mentions légales des offres (reprises de la page d'accueil officielle).</b><br>
     Classe A Edition 140 — Location Longue Durée : Classe A 180 Edition 140, 45 000 km, sans apport, 37 loyers mensuels de 350 €. Modèle présenté : Classe A 180 Edition 140 avec jantes AMG 19'', peinture métallisée gris montagne et pack Sport Black, 37 loyers mensuels de 374 €. Offre au prix tarif remisé du 01/09/26, valable dans la limite des stocks disponibles pour toute commande d'un véhicule neuf du 01/10/26 au 31/10/26 et livraison avant le 27/12/26 chez les distributeurs participants, sous réserve d'acceptation du dossier par Mercedes-Benz Financial Services SA, 7 av. Niepce, 78180 Montigny. RCS Versailles 304 974 249, N° ORIAS 07009177.<br>
     Nouveau GLB Hybride — LLD 45 000 km : GLB 200 hybride Progressive Line, 37 loyers linéaires mensuels de 615 €. Modèle présenté : GLB 200 hybride AMG Line avec pack Sport Black, 37 loyers mensuels de 730 €. GLB électrique — LLD : 1er loyer de 545 € après déduction de la prime Coup de pouce Véhicules Particuliers Électriques de 3 590 €, puis 36 loyers mensuels de 545 €. CLA Shooting Brake Hybride — LLD : 37 loyers linéaires mensuels de 530 €. CLA Berline électrique — LLD : 1er loyer de 545 € après prime, puis 36 loyers de 545 €. Marco Polo : avantage client de 12 000 € TTC sous forme de remise immédiate, commandes du 28/09/2026 au 18/10/2026. Autonomies et consommations selon le cycle WLTP. Les visuels de cette démo sont générés par IA et peuvent différer des modèles réels.
   </div>
   <div class="fbot">
-    <span>© 2026 Mercedes-Benz — copie d'étude</span><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
+    <span>© 2026 Mercedes-Benz Maroc — copie d'étude</span><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
     <span class="demo">Démo réalisée par VERTEX WEB avec le modèle « Websites in 2026 » — site non affilié à Mercedes-Benz Group AG.</span>
   </div>
 </footer>
+
+<!-- BARRE MOBILE -->
+<div class="mbar"><a href="#configurateur">Configurer</a><a href="#essai">Réserver un essai</a><a href="#distributeur">Showrooms</a></div>
 
 <script>
 /* ============ MARQUEE ============ */
@@ -474,6 +601,44 @@ document.querySelectorAll('.cnt').forEach(el=>io2.observe(el));
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
 document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
 const f=b.dataset.f;document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',f!=='all'&&!c.dataset.cat.includes(f)));});
+
+/* ============ CONFIGURATEUR ============ */
+const CFG={
+ models:[{n:'GLC électrique',p:785000,img:'assets/hero-card.jpg'},{n:'EQS',p:1165000,img:'assets/eqs-card.jpg'},{n:'Classe G',p:1450000,img:'assets/g-card.jpg'},{n:'Nouvelle Classe C',p:599000,img:'assets/hero-card.jpg',f:'hue-rotate(-14deg) saturate(.72) brightness(.92)'}],
+ colors:[{n:'Argent high-tech métallisé',c:'#c0c4c9',f:''},{n:'Noir obsidienne métallisé',c:'#0b0b0d',f:'brightness(.5) saturate(.75)'},{n:'Blanc polaire',c:'#f2f2f0',f:'brightness(1.3) saturate(.35)'},{n:'Rouge Patagonie MANUFAKTUR',c:'#8f1220',f:'sepia(.85) hue-rotate(-50deg) saturate(3.2) brightness(.95) contrast(1.05)'},{n:'Bleu limpide métallisé',c:'#274b73',f:'sepia(.4) hue-rotate(168deg) saturate(1.9) brightness(.85)'}],
+ trims:[{n:'Progressive Line',p:0},{n:'AMG Line',p:45000},{n:'MANUFAKTUR',p:90000}],
+ opts:[{n:'Toit panoramique SKY CONTROL',p:18000},{n:'Pack Premium (Burmester 3D, sièges climatisés)',p:32000},{n:'DIGITAL LIGHT',p:12500},{n:'Pack Hiver (volant + sièges chauffants)',p:6500}]
+};
+let cfg={m:0,c:0,t:0,o:new Set()};
+const fmt=n=>n.toLocaleString('fr-FR')+' MAD';
+function cfgRender(sel,items,cb){const el=document.getElementById(sel);el.innerHTML='';items.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=it.n+(it.p?` <small>+ ${fmt(it.p)}</small>`:'');b.onclick=()=>cb(i);el.appendChild(b);});}
+function cfgPaint(){
+ const M=CFG.models[cfg.m];
+ const im=document.getElementById('cfgImg');im.src=M.img;im.style.filter=((M.f||'')+' '+(CFG.colors[cfg.c].f||'')).trim();
+ document.getElementById('cfgName').textContent=M.n;
+ document.getElementById('cfgColorName').textContent=CFG.colors[cfg.c].n.split(' métallisé')[0];
+ document.getElementById('cfgColorLabel').textContent=CFG.colors[cfg.c].n;
+ let tot=M.p+CFG.trims[cfg.t].p;cfg.o.forEach(i=>tot+=CFG.opts[i].p);
+ document.getElementById('cfgTotal').textContent=fmt(tot);
+ document.getElementById('cfgMonth').textContent=(Math.round(tot*0.0162/100)*100).toLocaleString('fr-FR')+' MAD/mois';
+ document.querySelectorAll('#cfgModels button').forEach((b,i)=>b.classList.toggle('on',i===cfg.m));
+ document.querySelectorAll('#cfgTrims button').forEach((b,i)=>b.classList.toggle('on',i===cfg.t));
+ document.querySelectorAll('#cfgColors button').forEach((b,i)=>b.classList.toggle('on',i===cfg.c));
+}
+cfgRender('cfgModels',CFG.models,i=>{cfg.m=i;cfgPaint();});
+cfgRender('cfgTrims',CFG.trims,i=>{cfg.t=i;cfgPaint();});
+(()=>{const el=document.getElementById('cfgColors');CFG.colors.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.style.background=c.c;b.title=c.n;b.onclick=()=>{cfg.c=i;cfgPaint();};el.appendChild(b);});
+const oe=document.getElementById('cfgOpts');CFG.opts.forEach((o,i)=>{const l=document.createElement('label');l.innerHTML=`<span><input type="checkbox"> ${o.n}</span><b>+ ${fmt(o.p)}</b>`;l.querySelector('input').onchange=e=>{if(e.target.checked)cfg.o.add(i);else cfg.o.delete(i);cfgPaint();};oe.appendChild(l);});})();
+cfgPaint();
+
+/* ============ ESSAI ============ */
+function sendEssai(e){e.preventDefault();
+ const v=document.getElementById('eVille').value,m=document.getElementById('eModele').value,n=document.getElementById('eNom').value.trim(),t=document.getElementById('eTel').value.trim();
+ if(!n||!t)return false;
+ const ok=document.getElementById('eOk');ok.style.display='block';
+ ok.innerHTML=`<b>Demande reçue, ${n}.</b><br>Essai d'une <b>${m}</b> à <b>${v}</b> — un conseiller Auto Nejma vous rappelle au <b>${t}</b> pour confirmer. Référence : <b>MB-MA-${Math.floor(1000+Math.random()*9000)}</b> (démo — aucun envoi réel).`;
+ ok.scrollIntoView({behavior:'smooth',block:'center'});return false;}
+
 /* lecture à l'écran (comme au téléphone) + tap-to-play secours */
 const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}}),{threshold:.25});
 document.querySelectorAll('.chap video').forEach(v=>{vio.observe(v);v.addEventListener('click',()=>v.paused?v.play().catch(()=>{}):v.pause());});
