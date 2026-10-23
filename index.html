@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercedes-Benz France | Voitures neuves et occasions — Démo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='white' stroke-width='6'/%3E%3Cpath d='M50 50 L50 10 M50 50 L16 70 M50 50 L84 70' stroke='white' stroke-width='6'/%3E%3C/svg%3E">
+<meta name="description" content="Copie d'étude de la page d'accueil Mercedes-Benz France, reconstruite avec le modèle VERTEX « Websites in 2026 » : film défilant sur canvas, préloader, grain cinéma.">
+<style>
+:root{--noir:#000;--fond:#0a0a0a;--blanc:#fff;--gris:#a8a8a8;--gris2:#6f6f6f;--ligne:#262626;--bleu:#00adef;--serif:"Times New Roman",serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--noir);color:var(--blanc);font-family:"Helvetica Neue",Arial,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+::selection{background:var(--bleu);color:#000}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* ---------- GRAIN + PROGRESS + CURSOR ---------- */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:200;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");animation:grain 7s steps(8) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}25%{transform:translate(-2%,3%)}50%{transform:translate(3%,-2%)}75%{transform:translate(-3%,-3%)}}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--bleu);width:0;z-index:300}
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:400;border-radius:50%;transform:translate(-50%,-50%)}
+.cur-dot{width:6px;height:6px;background:var(--bleu)}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(0,173,239,.7);transition:width .25s,height .25s}
+@media(pointer:coarse){.cur-dot,.cur-ring{display:none}}
+
+/* ---------- PRELOADER ---------- */
+#loader{position:fixed;inset:0;background:#000;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:transform 1s cubic-bezier(.76,0,.24,1)}
+#loader.done{transform:translateY(-100%)}
+#loader .star{width:74px;height:74px;animation:spinIn 1.6s cubic-bezier(.2,.8,.2,1)}
+@keyframes spinIn{from{transform:rotate(-120deg) scale(.6);opacity:0}to{transform:rotate(0) scale(1);opacity:1}}
+#loader .pct{font-size:13px;letter-spacing:.45em;color:var(--gris)}
+#loader .bar{width:180px;height:1px;background:#222}
+#loader .bar i{display:block;height:100%;background:var(--bleu);width:0}
+#loader .word{font-family:var(--serif);font-size:22px;letter-spacing:.14em}
+
+/* ---------- HEADER (copie MB) ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--ligne)}
+.hbar{max-width:1560px;margin:0 auto;display:flex;align-items:center;gap:34px;padding:0 28px;height:72px}
+.logo{display:flex;align-items:center;gap:14px;flex:none}
+.logo svg{width:42px;height:42px}
+.logo .word{font-family:var(--serif);font-size:19px;letter-spacing:.06em;white-space:nowrap}
+nav.main{display:flex;gap:30px;margin-left:12px}
+nav.main a{font-size:14.5px;color:#e8e8e8;padding:8px 0;border-bottom:2px solid transparent;transition:.25s}
+nav.main a:hover{color:#fff;border-color:var(--bleu)}
+.hright{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:13.5px;color:#ddd;flex:none}
+.hright .ico{width:20px;height:20px;stroke:#ddd}
+.hright a:hover{color:var(--bleu)}
+.burger{display:none;background:none;border:0}
+.burger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0}
+@media(max-width:1080px){nav.main{display:none}.hright .hideS{display:none}}
+@media(max-width:640px){.logo .word{display:none}.burger{display:block}}
+
+/* ---------- HERO FILM (pinned canvas) ---------- */
+.film-wrap{height:380vh;position:relative}
+.film-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#000}
+.film-pin canvas{position:absolute;inset:0;width:100%;height:100%}
+.film-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent 30%,transparent 55%,rgba(0,0,0,.78));z-index:2}
+.film-copy{position:absolute;z-index:3;left:0;right:0;bottom:9vh;padding:0 28px;max-width:1560px;margin:0 auto}
+.film-copy .phase{position:absolute;left:28px;right:28px;bottom:0;opacity:0;transform:translateY(26px);transition:opacity .5s,transform .5s;pointer-events:none}
+.film-copy .phase.on{opacity:1;transform:none;pointer-events:auto;position:relative;left:0;right:0}
+.kicker{font-size:12.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--bleu);margin-bottom:16px}
+h1,h2.big{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.6vw,74px);line-height:1.04;letter-spacing:.01em}
+.film-copy p.sub{margin-top:14px;font-size:clamp(15px,1.6vw,19px);color:#d9d9d9;max-width:560px;line-height:1.55}
+.ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 34px;font-size:15px;border:1px solid #fff;transition:.25s;background:transparent;color:#fff}
+.btn.solid{background:var(--bleu);border-color:var(--bleu);color:#000;font-weight:600}
+.btn.solid:hover{background:#33c0f5}
+.btn.ghost:hover{background:#fff;color:#000}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.chips span{border:1px solid rgba(255,255,255,.35);padding:8px 16px;font-size:13.5px;border-radius:99px;background:rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+.film-prog{position:absolute;z-index:4;right:28px;bottom:9vh;width:120px;height:1px;background:rgba(255,255,255,.25)}
+.film-prog i{display:block;height:100%;background:var(--bleu);width:0}
+.scrollhint{position:absolute;z-index:4;left:50%;transform:translateX(-50%);bottom:18px;font-size:11px;letter-spacing:.4em;color:rgba(255,255,255,.55)}
+@media(max-width:640px){.film-prog{display:none}}
+
+/* ---------- STRIP SERVICES ---------- */
+.strip{background:#000;border-bottom:1px solid var(--ligne)}
+.strip-in{max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.strip a{padding:26px 28px;border-left:1px solid var(--ligne);display:flex;justify-content:space-between;align-items:center;font-size:15.5px;transition:.25s}
+.strip a:first-child{border-left:0}
+.strip a:hover{background:#111;color:var(--bleu)}
+.strip a b{font-weight:500}
+.strip a span{color:var(--bleu);font-size:19px}
+@media(max-width:860px){.strip-in{grid-template-columns:1fr 1fr}.strip a{border-top:1px solid var(--ligne)}}
+
+/* ---------- SECTIONS ---------- */
+section.bloc{padding:110px 28px;max-width:1560px;margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px;flex-wrap:wrap}
+h2.titre{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4vw,54px)}
+.sec-head p{color:var(--gris);max-width:480px;font-size:15.5px;line-height:1.6}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.tabs button{background:transparent;color:#ddd;border:1px solid #3a3a3a;padding:11px 22px;border-radius:99px;font-size:14px;transition:.25s}
+.tabs button.on,.tabs button:hover{background:#fff;color:#000;border-color:#fff}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:#111;border:1px solid var(--ligne);overflow:hidden;transition:.35s}
+.card:hover{border-color:#3d3d3d;transform:translateY(-4px)}
+.card .ph{overflow:hidden;aspect-ratio:16/10}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .ph img{transform:scale(1.06)}
+.card .tx{padding:26px 28px 30px}
+.card .cat{font-size:12px;letter-spacing:.28em;color:var(--bleu);text-transform:uppercase}
+.card h3{font-family:var(--serif);font-weight:400;font-size:30px;margin:10px 0 8px}
+.card p{color:var(--gris);font-size:15px;line-height:1.6;max-width:46ch}
+.card .prix{margin-top:18px;font-size:17px}
+.card .prix small{color:var(--gris2);font-size:13px;display:block;margin-bottom:3px}
+.card .links{margin-top:20px;display:flex;gap:22px;font-size:14.5px}
+.card .links a{color:var(--bleu)}
+.card .links a:hover{text-decoration:underline}
+.card.hide{display:none}
+
+/* ---------- OFFRES ---------- */
+.offres{background:#fff;color:#000}
+.offres .sec-head p{color:#555}
+.offres h2.titre{color:#000}
+.orow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #ddd}
+@media(max-width:960px){.orow{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.orow{grid-template-columns:1fr}}
+.offre{padding:30px 28px 34px;border-bottom:1px solid #ddd;border-right:1px solid #ddd}
+.offre .tag{font-size:11.5px;letter-spacing:.26em;color:#0078d6;text-transform:uppercase}
+.offre h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:12px 0 10px}
+.offre .loyer{font-size:15px;color:#333;line-height:1.6}
+.offre .loyer b{font-size:30px;font-weight:600}
+.offre a{display:inline-block;margin-top:18px;font-size:14.5px;color:#0078d6}
+.offre a:hover{text-decoration:underline}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:#000;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);overflow:hidden;padding:20px 0;white-space:nowrap}
+.marquee .track{display:inline-block;animation:mq 30s linear infinite;font-family:var(--serif);font-size:21px;letter-spacing:.3em;color:#3f3f3f}
+.marquee .track b{color:var(--bleu);font-weight:400}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- CHAPITRES VIDEO ---------- */
+.chap{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.chap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.chap .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 40%,rgba(0,0,0,.8))}
+.chap .tx{position:relative;z-index:2;padding:0 28px 9vh;max-width:1560px;margin:0 auto;width:100%}
+.stats{display:flex;gap:44px;flex-wrap:wrap;margin-top:30px}
+.stat b{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);display:block}
+.stat>span{color:var(--gris);font-size:13.5px;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- UNIVERS ---------- */
+.uni{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:960px){.uni{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.uni{grid-template-columns:1fr}}
+.uni a{position:relative;aspect-ratio:3/4;overflow:hidden;background:#111}
+.uni img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:transform 1.2s}
+.uni a:hover img{transform:scale(1.07)}
+.uni .lb{position:absolute;left:22px;bottom:22px;z-index:2}
+.uni .lb h3{font-family:var(--serif);font-weight:400;font-size:25px}
+.uni .lb span{color:var(--bleu);font-size:14px}
+.uni::after{content:""}
+.uni a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.75))}
+
+/* ---------- SERVICES ---------- */
+.serv{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+@media(max-width:960px){.serv{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.serv{grid-template-columns:1fr}}
+.serv div{border:1px solid var(--ligne);padding:30px 26px;background:#0d0d0d;transition:.3s}
+.serv div:hover{border-color:var(--bleu)}
+.serv h3{font-size:18px;font-weight:600;margin-bottom:10px}
+.serv p{color:var(--gris);font-size:14.5px;line-height:1.65}
+
+/* ---------- DISTRIBUTEUR ---------- */
+.distri{background:linear-gradient(120deg,#06121a,#000 60%);border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
+.distri-in{max-width:1560px;margin:0 auto;padding:90px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center}
+@media(max-width:860px){.distri-in{grid-template-columns:1fr}}
+.distri form{display:flex;gap:0}
+.distri input{flex:1;background:#111;border:1px solid #333;color:#fff;padding:17px 20px;font-size:16px;outline:none;min-width:0}
+.distri input:focus{border-color:var(--bleu)}
+.distri button{background:var(--bleu);border:0;color:#000;font-weight:600;padding:0 30px;font-size:15px}
+
+/* ---------- FOOTER (copie MB) ---------- */
+footer{background:#000;border-top:1px solid var(--ligne)}
+.fcols{max-width:1560px;margin:0 auto;padding:80px 28px 50px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+@media(max-width:860px){.fcols{grid-template-columns:1fr 1fr}}
+.fcols h4{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#fff;margin-bottom:22px}
+.fcols a{display:block;color:var(--gris);font-size:14.5px;padding:6px 0}
+.fcols a:hover{color:var(--bleu)}
+.legal{max-width:1560px;margin:0 auto;padding:34px 28px;border-top:1px solid var(--ligne);color:#5c5c5c;font-size:12px;line-height:1.75}
+.fbot{max-width:1560px;margin:0 auto;padding:26px 28px 44px;display:flex;gap:26px;flex-wrap:wrap;color:var(--gris2);font-size:13px;border-top:1px solid var(--ligne)}
+.fbot .demo{color:var(--bleu)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="grain"></div><div class="progress" id="prog"></div>
+<div class="cur-dot" id="cdot"></div><div class="cur-ring" id="cring"></div>
+
+<!-- PRELOADER -->
+<div id="loader">
+  <svg class="star" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="47" stroke="#fff" stroke-width="2.4"/><path d="M50 50 L50 8 M50 50 L14 71 M50 50 L86 71" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+  <div class="word">Mercedes-Benz</div>
+  <div class="bar"><i id="lbar"></i></div>
+  <div class="pct"><span id="lpct">0</span> %</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hbar">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="47" stroke="#fff" stroke-width="2.6"/><path d="M50 50 L50 8 M50 50 L14 71 M50 50 L86 71" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      <span class="word">Mercedes-Benz</span>
+    </a>
+    <nav class="main">
+      <a href="#modeles">Nos modèles</a>
+      <a href="#offres">Offres</a>
+      <a href="#electrique">Électrique</a>
+      <a href="#univers">Univers</a>
+      <a href="#services">Services</a>
+    </nav>
+    <div class="hright">
+      <a class="hideS" href="#distributeur">Trouver un distributeur</a>
+      <a href="#modeles" aria-label="Rechercher"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg></a>
+      <a href="#" aria-label="Compte"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-5.5 8-5.5s6.5 1.5 8 5.5"/></svg></a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO : FILM SCROLL CANVAS -->
+<div class="film-wrap" id="filmHero">
+  <div class="film-pin">
+    <canvas id="cvHero"></canvas>
+    <div class="film-shade"></div>
+    <div class="film-copy">
+      <div class="phase on" data-ph="0">
+        <div class="kicker">Nouveau · 100 % électrique</div>
+        <h1>Le nouveau GLC électrique.</h1>
+        <p class="sub">L'icône des SUV Mercedes-Benz devient électrique. Jusqu'à 713 km d'autonomie, 489 ch, et l'intelligence MB.OS à bord.</p>
+        <div class="ctas"><a class="btn solid" href="#modeles">Découvrir le GLC</a><a class="btn ghost" href="#distributeur">Réserver un essai</a></div>
+      </div>
+      <div class="phase" data-ph="1">
+        <div class="kicker">Design</div>
+        <h1>L'étoile, en pleine lumière.</h1>
+        <p class="sub">Calandre iconique éclairée, signature lumineuse DIGITAL LIGHT et silhouette de coupé : faites défiler, approchez-vous.</p>
+        <div class="chips"><span>489 ch</span><span>713 km WLTP</span><span>Architecture 800 V</span><span>Recharge 10–80 % en 29 min</span></div>
+      </div>
+      <div class="phase" data-ph="2">
+        <div class="kicker">À partir de 71 900 €</div>
+        <h1>Prêt à prendre la route.</h1>
+        <p class="sub">Configurez le vôtre, ou trouvez-le dès aujourd'hui dans le stock en ligne.</p>
+        <div class="ctas"><a class="btn solid" href="#offres">Voir les offres</a><a class="btn ghost" href="#modeles">Tous les modèles</a></div>
+      </div>
+    </div>
+    <div class="film-prog"><i id="fprog"></i></div>
+    <div class="scrollhint">DÉFILER</div>
+  </div>
+</div>
+
+<!-- STRIP -->
+<div class="strip"><div class="strip-in">
+  <a href="#modeles"><b>Configurateur</b><span>→</span></a>
+  <a href="#offres"><b>Véhicules en stock</b><span>→</span></a>
+  <a href="#distributeur"><b>Réserver un essai</b><span>→</span></a>
+  <a href="#services"><b>Estimation de reprise</b><span>→</span></a>
+</div></div>
+
+<!-- MODELES -->
+<section class="bloc" id="modeles">
+  <div class="sec-head rv">
+    <h2 class="titre">Nos modèles.</h2>
+    <p>Berlines, SUV, électriques et AMG : toute la gamme Mercedes-Benz, des compactes Classe A à l'icône Classe G.</p>
+  </div>
+  <div class="tabs rv" id="tabs">
+    <button class="on" data-f="all">Tous les modèles</button>
+    <button data-f="suv">SUV</button>
+    <button data-f="berline">Berlines</button>
+    <button data-f="elec">Électriques</button>
+    <button data-f="icone">Icônes</button>
+  </div>
+  <div class="grid">
+    <article class="card rv" data-cat="suv elec">
+      <div class="ph"><img src="assets/hero-card.jpg" alt="Nouveau GLC électrique argent"></div>
+      <div class="tx"><div class="cat">SUV · Électrique</div><h3>GLC électrique</h3>
+      <p>Le best-seller devient 100 % électrique : 489 ch, jusqu'à 713 km d'autonomie WLTP et la recharge ultra-rapide 800 V.</p>
+      <div class="prix"><small>À partir de</small>71 900 €</div>
+      <div class="links"><a href="#offres">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
+    </article>
+    <article class="card rv" data-cat="berline elec">
+      <div class="ph"><img src="assets/eqs-card.jpg" alt="EQS berline électrique blanche"></div>
+      <div class="tx"><div class="cat">Berline · Électrique</div><h3>EQS</h3>
+      <p>La Classe S électrique : silhouette d'une fluidité record, MBUX Hyperscreen et jusqu'à 809 km d'autonomie.</p>
+      <div class="prix"><small>À partir de</small>107 350 €</div>
+      <div class="links"><a href="#electrique">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
+    </article>
+    <article class="card rv" data-cat="suv icone">
+      <div class="ph"><img src="assets/g-card.jpg" alt="Classe G noir sur route côtière"></div>
+      <div class="tx"><div class="cat">SUV · Icône</div><h3>Classe G</h3>
+      <p>Plus forte que le temps. Le G reste le G : silhouette inchangée depuis 1979, capacités tout-terrain légendaires, désormais aussi en électrique.</p>
+      <div class="prix"><small>Édition</small>Stronger Than Time</div>
+      <div class="links"><a href="#classeg">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
+    </article>
+    <article class="card rv" data-cat="berline">
+      <div class="ph"><img src="assets/hero-card.jpg" alt="Classe C berline" style="filter:hue-rotate(-14deg) saturate(.72) brightness(.92)"></div>
+      <div class="tx"><div class="cat">Berline</div><h3>Nouvelle Classe C</h3>
+      <p>La berline la plus vendue de la marque se modernise : design athlétique, motorisations électrifiées et MB.OS à bord.</p>
+      <div class="prix"><small>À partir de</small>55 300 €</div>
+      <div class="links"><a href="#offres">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- OFFRES (textes repris de la page officielle) -->
+<div class="offres"><section class="bloc" style="padding-top:90px;padding-bottom:90px" id="offres">
+  <div class="sec-head rv"><h2 class="titre">Les offres du moment.</h2><p>Location Longue Durée, sans apport, chez les distributeurs participants. Conditions complètes en bas de page.</p></div>
+  <div class="orow rv">
+    <div class="offre"><div class="tag">LLD · 37 loyers</div><h3>Classe A Edition 140</h3><p class="loyer">Classe A 180 Edition 140, 45 000 km, sans apport<br><b>350 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>GLB Hybride</h3><p class="loyer">Nouveau GLB 200 hybride Progressive Line, 45 000 km<br><b>615 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>GLB électrique</h3><p class="loyer">GLB 200 électrique Progressive Line, prime déduite<br><b>545 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Hybride</div><h3>CLA Shooting Brake Hybride</h3><p class="loyer">CLA Shooting Brake 200 hybride Progressive Line<br><b>530 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Nouveau · Électrique</div><h3>CLA Shooting Brake électrique</h3><p class="loyer">CLA Shooting Brake 200 électrique Progressive Line<br><b>550 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+    <div class="offre"><div class="tag">Hybride</div><h3>CLA Berline Hybride</h3><p class="loyer">Nouveau CLA Berline hybride 200 Progressive Line<br><b>520 €</b> / mois</p><a href="#distributeur">J'en profite →</a></div>
+  </div>
+</section></div>
+
+<!-- MARQUEE -->
+<div class="marquee"><div class="track" id="mq"></div></div>
+
+<!-- FILM 2 : CLASSE G -->
+<div class="film-wrap" id="classeg" style="height:320vh">
+  <div class="film-pin">
+    <canvas id="cvG"></canvas>
+    <div class="film-shade"></div>
+    <div class="film-copy">
+      <div class="phase on" data-ph="0">
+        <div class="kicker">Classe G</div>
+        <h1 class="big">Plus forte que le temps.</h1>
+        <p class="sub">Depuis 1979, la même silhouette, la même promesse. Faites défiler : la route de corniche défile avec elle.</p>
+        <div class="ctas"><a class="btn solid" href="#distributeur">Réserver un essai</a></div>
+      </div>
+      <div class="phase" data-ph="1">
+        <div class="kicker">G 580 · Électrique</div>
+        <h1 class="big">L'icône devient électrique.</h1>
+        <p class="sub">Quatre moteurs électriques, un par roue. Le G-turn : elle pivote sur place, comme un char.</p>
+        <div class="chips"><span>4 moteurs</span><span>579 ch</span><span>G-Turn</span><span>Châssis échelle</span></div>
+      </div>
+    </div>
+    <div class="film-prog"><i id="fprog2"></i></div>
+  </div>
+</div>
+
+<!-- ELECTRIQUE / INTERIEUR -->
+<div class="chap" id="electrique">
+  <video src="assets/interior-film.mp4" autoplay muted loop playsinline></video>
+  <div class="shade"></div>
+  <div class="tx rv">
+    <div class="kicker">MBUX Hyperscreen · MB.OS</div>
+    <h2 class="big">Un écran. Toute la voiture.</h2>
+    <p class="sub" style="margin-top:14px;color:#d9d9d9;max-width:560px;line-height:1.55;font-size:17px">L'assistant vocal « Hey Mercedes », la navigation à réalité augmentée et des mises à jour à distance : l'intérieur devient une interface.</p>
+    <div class="stats">
+      <div class="stat"><b><span class="cnt" data-n="713">0</span> km</b><span>Autonomie GLC élec.</span></div>
+      <div class="stat"><b><span class="cnt" data-n="489">0</span> ch</b><span>GLC 400 4MATIC</span></div>
+      <div class="stat"><b><span class="cnt" data-n="800">0</span> V</b><span>Architecture de charge</span></div>
+      <div class="stat"><b><span class="cnt" data-n="29">0</span> min</b><span>Recharge 10–80 %</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EQS VIDEO -->
+<div class="chap">
+  <video src="assets/eqs-film.mp4" autoplay muted loop playsinline></video>
+  <div class="shade"></div>
+  <div class="tx rv">
+    <div class="kicker">EQS · 100 % électrique</div>
+    <h2 class="big">Le luxe, en silence.</h2>
+    <p class="sub" style="margin-top:14px;color:#d9d9d9;max-width:560px;line-height:1.55;font-size:17px">Le coefficient de traînée le plus faible au monde pour une voiture de série. Jusqu'à 809 km sans s'arrêter — ni faire de bruit.</p>
+    <div class="ctas"><a class="btn solid" href="#modeles">Découvrir EQS</a><a class="btn ghost" href="#offres">Les offres électriques</a></div>
+  </div>
+</div>
+
+<!-- UNIVERS -->
+<section class="bloc" id="univers">
+  <div class="sec-head rv"><h2 class="titre">L'univers Mercedes-Benz.</h2><p>Quatre mondes, une étoile : la performance AMG, le luxe Maybach, l'icône G et 140 ans d'histoire.</p></div>
+  <div class="uni">
+    <a href="#classeg" class="rv"><img src="assets/g-card.jpg" alt="Mercedes-AMG"><div class="lb"><h3>Mercedes-AMG</h3><span>La performance →</span></div></a>
+    <a href="#electrique" class="rv"><img src="assets/interior-card.jpg" alt="Mercedes-Maybach intérieur"><div class="lb"><h3>Mercedes-Maybach</h3><span>Le luxe ultime →</span></div></a>
+    <a href="#classeg" class="rv"><img src="assets/g-card.jpg" alt="Classe G" style="filter:brightness(.8) saturate(.8)"><div class="lb"><h3>Classe G</h3><span>L'icône →</span></div></a>
+    <a href="#modeles" class="rv"><img src="assets/eqs-card.jpg" alt="Électrique EQ"><div class="lb"><h3>Électrique</h3><span>L'univers EQ →</span></div></a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="bloc" id="services" style="padding-top:20px">
+  <div class="sec-head rv"><h2 class="titre">Services &amp; accessoires.</h2><p>Bien plus qu'une voiture : l'entretien, la connectivité et la sérénité, gérés depuis votre poche.</p></div>
+  <div class="serv">
+    <div class="rv"><h3>Mercedes me</h3><p>Verrouillez, localisez et pré-climatisez votre Mercedes depuis l'application. Services connectés inclus sur les nouveaux modèles.</p></div>
+    <div class="rv"><h3>Entretien &amp; garantie</h3><p>Forfaits d'entretien transparents, pièces d'origine et garantie constructeur. Prenez rendez-vous en ligne en 2 minutes.</p></div>
+    <div class="rv"><h3>Mercedes-Benz Assurance</h3><p>1 an de cotisation offert pour toute souscription lors de l'achat d'une Mercedes neuve ou d'occasion de moins d'1 an (offre GLA, voir conditions).</p></div>
+    <div class="rv"><h3>Financement</h3><p>Location Longue Durée dès 350 €/mois, crédit ou location avec option d'achat : simulez votre mensualité avec un distributeur.</p></div>
+  </div>
+</section>
+
+<!-- DISTRIBUTEUR -->
+<div class="distri" id="distributeur"><div class="distri-in">
+  <div class="rv"><div class="kicker">Près de chez vous</div><h2 class="titre" style="color:#fff">Trouvez votre distributeur.</h2>
+  <p style="color:var(--gris);margin-top:14px;line-height:1.6;max-width:48ch">Essai, reprise, financement : les équipes Mercedes-Benz vous accueillent partout en France.</p></div>
+  <form class="rv" onsubmit="event.preventDefault();this.querySelector('button').textContent='Recherche…';setTimeout(()=>{this.querySelector('button').textContent='3 distributeurs trouvés ✓'},900)">
+    <input type="text" placeholder="Ville ou code postal" aria-label="Ville ou code postal">
+    <button type="submit">Rechercher</button>
+  </form>
+</div></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fcols">
+    <div><h4>Acheter</h4><a href="#modeles">Tous les modèles</a><a href="#offres">Offres du moment</a><a href="#offres">Véhicules en stock</a><a href="#modeles">Configurateur</a><a href="#distributeur">Réserver un essai</a></div>
+    <div><h4>Services</h4><a href="#services">Mercedes me</a><a href="#services">Entretien</a><a href="#services">Garantie</a><a href="#services">Assurance</a><a href="#services">Accessoires</a></div>
+    <div><h4>Découvrir</h4><a href="#electrique">Électrique</a><a href="#univers">Mercedes-AMG</a><a href="#univers">Mercedes-Maybach</a><a href="#classeg">Classe G</a><a href="#univers">Classic</a></div>
+    <div><h4>Entreprise</h4><a href="#">Mercedes-Benz Group</a><a href="#">Carrières</a><a href="#">Presse</a><a href="#">Développement durable</a><a href="#">Contact</a></div>
+  </div>
+  <div class="legal">
+    <b style="color:#8a8a8a">Mentions légales des offres (reprises de la page d'accueil officielle).</b><br>
+    Classe A Edition 140 — Location Longue Durée : Classe A 180 Edition 140, 45 000 km, sans apport, 37 loyers mensuels de 350 €. Modèle présenté : Classe A 180 Edition 140 avec jantes AMG 19'', peinture métallisée gris montagne et pack Sport Black, 37 loyers mensuels de 374 €. Offre au prix tarif remisé du 01/09/26, valable dans la limite des stocks disponibles pour toute commande d'un véhicule neuf du 01/10/26 au 31/10/26 et livraison avant le 27/12/26 chez les distributeurs participants, sous réserve d'acceptation du dossier par Mercedes-Benz Financial Services SA, 7 av. Niepce, 78180 Montigny. RCS Versailles 304 974 249, N° ORIAS 07009177.<br>
+    Nouveau GLB Hybride — LLD 45 000 km : GLB 200 hybride Progressive Line, 37 loyers linéaires mensuels de 615 €. Modèle présenté : GLB 200 hybride AMG Line avec pack Sport Black, 37 loyers mensuels de 730 €. GLB électrique — LLD : 1er loyer de 545 € après déduction de la prime Coup de pouce Véhicules Particuliers Électriques de 3 590 €, puis 36 loyers mensuels de 545 €. CLA Shooting Brake Hybride — LLD : 37 loyers linéaires mensuels de 530 €. CLA Berline électrique — LLD : 1er loyer de 545 € après prime, puis 36 loyers de 545 €. Marco Polo : avantage client de 12 000 € TTC sous forme de remise immédiate, commandes du 28/09/2026 au 18/10/2026. Autonomies et consommations selon le cycle WLTP. Les visuels de cette démo sont générés par IA et peuvent différer des modèles réels.
+  </div>
+  <div class="fbot">
+    <span>© 2026 Mercedes-Benz — copie d'étude</span><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">Cookies</a>
+    <span class="demo">Démo réalisée par VERTEX WEB avec le modèle « Websites in 2026 » — site non affilié à Mercedes-Benz Group AG.</span>
+  </div>
+</footer>
+
+<script>
+/* ============ MARQUEE ============ */
+(()=>{const t=document.getElementById('mq');const s=' GLC ÉLECTRIQUE <b>✦</b> CLASSE G <b>✦</b> EQS <b>✦</b> MERCEDES-AMG <b>✦</b> MAYBACH <b>✦</b> MBUX <b>✦</b>';t.innerHTML=s.repeat(6);})();
+
+/* ============ CURSEUR + PROGRESS ============ */
+(()=>{const d=document.getElementById('cdot'),r=document.getElementById('cring');let x=0,y=0,rx=0,ry=0;
+addEventListener('mousemove',e=>{x=e.clientX;y=e.clientY;d.style.left=x+'px';d.style.top=y+'px';});
+(function loop(){rx+=(x-rx)*.14;ry+=(y-ry)*.14;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});})();
+
+/* ============ FILMS CANVAS (moteur commun, lerp réversible) ============ */
+function makeFilm(wrapId,cvId,dir,count,progId,phases){
+  const wrap=document.getElementById(wrapId),cv=document.getElementById(cvId),ctx=cv.getContext('2d');
+  const frames=[];let loaded=0,cur=0,target=0,ready=false;
+  for(let i=0;i<count;i++){const im=new Image();im.src=dir+'f'+String(i).padStart(3,'0')+'.webp';im.onload=()=>{loaded++;if(loaded===count)ready=true;};frames.push(im);}
+  function size(){const dpr=Math.min(devicePixelRatio||1,1.6);cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;}
+  size();addEventListener('resize',size);
+  function draw(){const im=frames[Math.round(cur)];if(im&&im.complete&&im.naturalWidth){const cw=cv.width,ch=cv.height,s=Math.max(cw/im.naturalWidth,ch/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;ctx.drawImage(im,(cw-w)/2,(ch-h)/2,w,h);}}
+  function tick(){
+    const r=wrap.getBoundingClientRect(),total=r.height-innerHeight;
+    const p=Math.min(1,Math.max(0,-r.top/total));target=p*(count-1);
+    cur+=(target-cur)*.085;draw();
+    if(progId)document.getElementById(progId).style.width=(p*100)+'%';
+    if(phases){const ph=p<.42?0:(p<.78?1:2);wrap.querySelectorAll('.phase').forEach(el=>{el.classList.toggle('on',+el.dataset.ph===Math.min(ph,phases-1));});}
+    requestAnimationFrame(tick);}
+  tick();
+  return ()=>loaded/count;
+}
+let heroLoad=()=>0;
+addEventListener('DOMContentLoaded',()=>{
+  heroLoad=makeFilm('filmHero','cvHero','frames/hero/',110,'fprog',3);
+  makeFilm('classeg','cvG','frames/gclass/',80,'fprog2',2);
+});
+
+/* ============ PRELOADER (progrès réel des frames héros) ============ */
+(()=>{const L=document.getElementById('loader'),bar=document.getElementById('lbar'),pct=document.getElementById('lpct');let done=false;
+const iv=setInterval(()=>{const p=Math.round(heroLoad()*100);bar.style.width=p+'%';pct.textContent=p;
+if(p>=100&&!done){done=true;clearInterval(iv);setTimeout(()=>{L.classList.add('done');setTimeout(()=>L.remove(),1100);},250);}},120);
+setTimeout(()=>{if(!done){done=true;L.classList.add('done');setTimeout(()=>L.remove(),1100);}},6000);})();
+
+/* ============ REVEALS + COMPTEURS + FILTRES ============ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,n=+el.dataset.n,t0=performance.now();(function step(t){const p=Math.min(1,(t-t0)/1400);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);})(t0);io2.unobserve(el);}}),{threshold:.6});
+document.querySelectorAll('.cnt').forEach(el=>io2.observe(el));
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+const f=b.dataset.f;document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',f!=='all'&&!c.dataset.cat.includes(f)));});
+/* lecture à l'écran (comme au téléphone) + tap-to-play secours */
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}}),{threshold:.25});
+document.querySelectorAll('.chap video').forEach(v=>{vio.observe(v);v.addEventListener('click',()=>v.paused?v.play().catch(()=>{}):v.pause());});
+</script>
+</body>
+</html>
