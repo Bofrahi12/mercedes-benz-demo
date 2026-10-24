@@ -234,6 +234,55 @@ footer{background:#000;border-top:1px solid var(--ligne)}
 /* reveal */
 .rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
+
+/* ================= MOTION PACK (les 6 modules appris) ================= */
+.mp-scene{position:relative;background:#000}
+.mp-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 40%,#14171c 0%,#0a0b0e 60%,#000 100%)}
+.mp-tag{position:absolute;top:92px;left:26px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);z-index:30}
+.mp-tag b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(20px,3.4vmin,32px);letter-spacing:.02em;margin-top:4px;color:#fff;text-transform:none}
+.mp-idx{position:absolute;top:92px;right:26px;font-size:11px;letter-spacing:.22em;color:var(--gris2);z-index:30}
+.mp-tile{position:absolute;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.55);will-change:transform,opacity;background-size:cover;background-position:center}
+.mp-tile .sm{position:absolute;left:12px;bottom:10px;font-size:10px;letter-spacing:.18em;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.mp-tile .big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(22px,4.6vmin,44px);color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.85);text-align:center;padding:8px}
+/* TUNNEL */
+#mpTunnel .mp-stage{perspective:950px;perspective-origin:50% 46%}
+#mpTunnel .vanish{position:absolute;left:50%;top:46%;width:10px;height:10px;margin:-5px;border-radius:50%;background:#bfe6ff;box-shadow:0 0 70px 34px rgba(0,173,239,.55);z-index:1}
+#mpTunnel .mp-tile{width:29vmin;height:40vmin;top:50%;left:50%;z-index:2}
+#mpTunnel .cap{position:absolute;bottom:9vh;left:0;right:0;text-align:center;z-index:5;font-family:var(--serif);font-size:clamp(22px,4vmin,40px);color:#fff}
+#mpTunnel .cap small{display:block;font-family:Arial;font-size:11px;letter-spacing:.3em;color:var(--bleu);text-transform:uppercase;margin-bottom:10px}
+/* ORBIT */
+#mpOrbit .mp-tile{width:16vmin;height:20vmin;top:50%;left:50%}
+#mpOrbit .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;z-index:5}
+#mpOrbit .center svg{width:64px;height:64px;margin:0 auto 10px}
+#mpOrbit .center .cb{font-family:var(--serif);font-size:clamp(28px,5.4vmin,52px);line-height:.98;color:#fff}
+#mpOrbit .center .cs{font-size:11px;letter-spacing:.28em;color:var(--bleu);margin-top:8px;text-transform:uppercase}
+/* SCATTER */
+#mpScatter .wrap{position:relative;height:150vh}
+#mpScatter .mp-stage{height:100vh}
+#mpScatter .blk{position:absolute;border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.5);will-change:transform;background-size:cover;background-position:center;overflow:hidden}
+#mpScatter .blk .bt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:#fff;font-size:clamp(18px,3.4vmin,32px);text-shadow:0 2px 12px rgba(0,0,0,.85);text-align:center;padding:6px}
+#mpScatter .blk small{position:absolute;left:12px;bottom:10px;font-size:10px;letter-spacing:.18em;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.8)}
+/* REEL FLUX */
+#mpFlux .lens{position:relative;width:min(94vw,1200px);height:52vmin;clip-path:url(#mpLensClip);background:#0a0c10;overflow:hidden}
+#mpFlux .track{position:absolute;top:0;left:0;height:100%;display:flex;gap:1.2vmin;will-change:transform}
+#mpFlux .panel{position:relative;height:100%;width:38vmin;flex:0 0 auto;border-radius:6px;overflow:hidden;background-size:cover;background-position:center}
+#mpFlux .panel .sm{position:absolute;left:12px;bottom:10px;font-size:11px;letter-spacing:.18em;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+#mpFlux .panel .big{position:absolute;left:12px;top:12px;font-family:var(--serif);font-size:clamp(18px,3vmin,28px);color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+/* WAVY */
+#mpWavy svg.waves{position:absolute;inset:0;width:100%;height:100%}
+#mpWavy .centerCard{position:relative;z-index:3;width:27vmin;height:38vmin;border-radius:14px;box-shadow:0 24px 50px rgba(0,0,0,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;background:linear-gradient(160deg,#1b2027,#05070a 75%);border:1px solid #2a2f38}
+#mpWavy .centerCard svg{width:52px;height:52px;margin-bottom:12px}
+#mpWavy .centerCard .cb{font-family:var(--serif);font-size:clamp(20px,3.6vmin,34px);line-height:1.05}
+/* CASCADE */
+#mpCascade .card{position:absolute;width:24vmin;height:31vmin;border-radius:12px;overflow:hidden;box-shadow:0 20px 44px rgba(0,0,0,.55);will-change:transform;background-size:cover;background-position:center}
+#mpCascade .card .sm{position:absolute;left:12px;bottom:10px;font-size:10px;letter-spacing:.18em;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+#mpCascade .card .big{position:absolute;left:12px;top:12px;font-family:var(--serif);font-size:clamp(16px,2.8vmin,26px);color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.85)}
+/* PILULE DE CONTROLE (signature Motion Pack) */
+#mpCtl{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:160;background:rgba(10,12,16,.92);color:#fff;border:1px solid #2a2f38;border-radius:99px;padding:9px 18px;display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(6px);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+#mpCtl .bar{width:110px;height:3px;background:rgba(255,255,255,.22);border-radius:2px;overflow:hidden}
+#mpCtl .bar i{display:block;height:100%;width:0;background:var(--bleu)}
+#mpCtlName{font-weight:800;min-width:96px;text-align:center}
+@media(max-width:860px){#mpCtl{bottom:66px}#mpCtl .bar{width:60px}#mpCtlName{min-width:70px}}
 </style>
 </head>
 <body>
@@ -312,6 +361,16 @@ footer{background:#000;border-top:1px solid var(--ligne)}
   <a href="#services"><b>Estimation de reprise</b><span>→</span></a>
 </div></div>
 
+
+
+<!-- MOTION PACK 1 · TUNNEL -->
+<section class="mp-scene" id="mpTunnel" data-mpname="01 · Tunnel" style="height:320vh">
+  <div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>TUNNEL 3D</b></div><div class="mp-idx">L'ÉTOILE / VITESSE / LUMIÈRE</div>
+    <div class="vanish"></div>
+    <div class="cap"><small>Motion Pack · 01</small>Entre dans l'étoile.</div>
+  </div>
+</section>
 
 <!-- LA MAISON MERCEDES-BENZ MAROC -->
 <section class="bloc" id="maison" style="padding-bottom:30px">
@@ -436,6 +495,59 @@ footer{background:#000;border-top:1px solid var(--ligne)}
 
 <!-- MARQUEE -->
 <div class="marquee"><div class="track" id="mq"></div></div>
+
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<clipPath id="mpLensClip" clipPathUnits="objectBoundingBox"><path d="M0,0.16 Q0.5,0.34 1,0.16 L1,0.84 Q0.5,0.66 0,0.84 Z"/></clipPath>
+<linearGradient id="mpWavyL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00adef"/><stop offset=".55" stop-color="#005b80"/><stop offset="1" stop-color="#02141d"/></linearGradient>
+<linearGradient id="mpWavyR" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d434e"/><stop offset=".55" stop-color="#14171c"/><stop offset="1" stop-color="#000"/></linearGradient>
+</defs></svg>
+
+<!-- MOTION PACK 2 · ORBIT -->
+<section class="mp-scene" id="mpOrbit" data-mpname="02 · Orbit" style="height:300vh">
+  <div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>ORBIT</b></div><div class="mp-idx">L'UNIVERS DE L'ÉTOILE</div>
+    <div class="center">
+      <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="47" stroke="#fff" stroke-width="2.6"/><path d="M50 50 L50 8 M50 50 L14 71 M50 50 L86 71" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      <div class="cb">L'ÉTOILE<br>EN ORBITE</div><div class="cs">Six mondes, une étoile</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION PACK 3 · SCATTER -->
+<section class="mp-scene" id="mpScatter" data-mpname="03 · Scatter">
+  <div class="wrap"><div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>SCATTER</b></div><div class="mp-idx">COLLAGE PARALLAXE</div>
+  </div></div>
+</section>
+
+<!-- MOTION PACK 4 · REEL FLUX -->
+<section class="mp-scene" id="mpFlux" data-mpname="04 · Reel Flux" style="height:300vh">
+  <div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>REEL FLUX</b></div><div class="mp-idx">LA GAMME SOUS LA LENTILLE</div>
+    <div class="lens"><div class="track" id="mpFluxTrack"></div></div>
+  </div>
+</section>
+
+<!-- MOTION PACK 5 · WAVY -->
+<section class="mp-scene" id="mpWavy" data-mpname="05 · Wavy" style="height:280vh">
+  <div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>WAVY PANELS</b></div><div class="mp-idx">BORDS LIQUIDES</div>
+    <svg class="waves" preserveAspectRatio="none" viewBox="0 0 100 100"><path id="mpWaveL" fill="url(#mpWavyL)"></path><path id="mpWaveR" fill="url(#mpWavyR)"></path></svg>
+    <div class="centerCard">
+      <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="47" stroke="#fff" stroke-width="2.6"/><path d="M50 50 L50 8 M50 50 L14 71 M50 50 L86 71" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      <div class="cb">MERCEDES-BENZ<br>MAROC</div>
+      <div style="font-size:11px;letter-spacing:.28em;color:var(--bleu);margin-top:10px">FORME &amp; FLUX</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION PACK 6 · CASCADE -->
+<section class="mp-scene" id="mpCascade" data-mpname="06 · Cascade" style="height:300vh">
+  <div class="mp-stage">
+    <div class="mp-tag">Motion Pack<b>CASCADE</b></div><div class="mp-idx">LA GAMME EN DIAGONALE</div>
+  </div>
+</section>
 
 <!-- FILM 2 : CLASSE G -->
 <div class="film-wrap" id="classeg" style="height:320vh">
@@ -643,5 +755,99 @@ function sendEssai(e){e.preventDefault();
 const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play().catch(()=>{});}else{v.pause();}}),{threshold:.25});
 document.querySelectorAll('.chap video').forEach(v=>{vio.observe(v);v.addEventListener('click',()=>v.paused?v.play().catch(()=>{}):v.pause());});
 </script>
-</body>
+
+<div id="mpCtl"><span id="mpCtlName">MERCEDES</span><span class="bar"><i id="mpCtlFill"></i></span><span id="mpCtlPct">0%</span></div>
+<script>
+/* ================= MOTION PACK — moteur (adapté de l'original VERTEX) ================= */
+(function(){
+"use strict";
+const $=(s,c)=>(c||document).querySelector(s), $$=(s,c)=>Array.from((c||document).querySelectorAll(s));
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), vh=()=>window.innerHeight;
+const IMG={glc:'assets/hero-card.jpg',g:'assets/g-card.jpg',eqs:'assets/eqs-card.jpg',int:'assets/interior-card.jpg'};
+function tile(parent,img,big,sm){const d=document.createElement("div");d.className="mp-tile";d.style.backgroundImage=`url(${img})`;d.innerHTML=(big?`<div class="big">${big}</div>`:"")+(sm?`<div class="sm">${sm}</div>`:"");parent.appendChild(d);return d;}
+/* TUNNEL */
+const tStage=$("#mpTunnel .mp-stage"), tTiles=[];
+[IMG.glc,IMG.int,IMG.g,IMG.eqs,IMG.glc,IMG.g].forEach((im,i)=>tTiles.push({el:tile(tStage,im,"",["GLC","MBUX","CLASSE G","EQS","AMG","MAROC"][i]+" · 0"+(i+1)),side:-1,i}));
+[IMG.eqs,IMG.g,IMG.int,IMG.glc,IMG.eqs,IMG.int].forEach((im,i)=>tTiles.push({el:tile(tStage,im,"",["EQS","G 580","HYPERSCREEN","GLC","EQ","MB.OS"][i]+" · 0"+(i+1)),side:1,i}));
+/* ORBIT */
+const oStage=$("#mpOrbit .mp-stage"), oTiles=[];
+[[IMG.glc,"GLC"],[IMG.g,"CLASSE G"],[IMG.eqs,"EQS"],[IMG.int,"MBUX"],[IMG.g,"AMG"],[IMG.glc,"EQ"],[IMG.eqs,"MAYBACH"],[IMG.int,"MB.OS"],[IMG.g,"G-TURN"],[IMG.glc,"4MATIC"],[IMG.eqs,"800 V"],[IMG.int,"HEY MERCEDES"]].forEach(([im,t],i)=>oTiles.push(tile(oStage,im,"",t)));
+/* SCATTER */
+const sStage=$("#mpScatter .mp-stage");
+const sDefs=[
+ {x:8,y:16,w:17,h:22,img:IMG.glc,sm:"GLC ÉLECTRIQUE",sp:1.5,r:-5},
+ {x:30,y:10,w:22,h:20,txt:"713 km",sm:"AUTONOMIE",sp:.7,r:2,bg:"#0d1420"},
+ {x:58,y:12,w:16,h:19,img:IMG.int,sm:"MBUX HYPERSCREEN",sp:1.9,r:6},
+ {x:10,y:52,w:18,h:24,img:IMG.g,sm:"CLASSE G",sp:.9,r:3},
+ {x:36,y:44,w:25,h:30,img:IMG.eqs,sm:"EQS",sp:1.2,r:-2},
+ {x:68,y:42,w:15,h:25,txt:"489 ch",sm:"4MATIC",sp:1.7,r:5,bg:"#0d1420"},
+ {x:16,y:84,w:16,h:15,txt:"800 V",sm:"RECHARGE",sp:2.1,r:-6,bg:"#0d1420"},
+ {x:44,y:84,w:19,h:16,img:IMG.int,sm:"MBUX",sp:.8,r:4},
+ {x:72,y:78,w:17,h:19,img:IMG.glc,sm:"CASA",sp:1.4,r:-3}];
+const sBlks=sDefs.map(d=>{const el=document.createElement("div");el.className="blk";
+ el.style.cssText=`left:${d.x}%;top:${d.y}%;width:${d.w}vmin;height:${d.h}vmin;${d.img?`background-image:url(${d.img})`:`background:${d.bg}`}`;
+ el.innerHTML=(d.txt?`<div class="bt">${d.txt}</div>`:"")+(d.sm?`<small>${d.sm}</small>`:"");
+ sStage.appendChild(el);return{el,d};});
+/* FLUX */
+const track=$("#mpFluxTrack"), fPanels=[];
+[["GLC électrique",IMG.glc],["EQS",IMG.eqs],["Classe G",IMG.g],["MBUX",IMG.int],["Classe C",IMG.glc],["AMG",IMG.g],["Maybach",IMG.int]].forEach(([t,im],i)=>{
+ const d=document.createElement("div");d.className="panel";d.style.backgroundImage=`url(${im})`;
+ d.innerHTML=`<div class="big">${t}</div><div class="sm">PANEL 0${i+1}</div>`;track.appendChild(d);fPanels.push(d);});
+/* CASCADE */
+const cStage=$("#mpCascade .mp-stage"), cCards=[];
+[["GLC",IMG.glc],["EQS",IMG.eqs],["CLASSE G",IMG.g],["MBUX",IMG.int],["CLASSE C",IMG.glc],["AMG GT",IMG.g],["EQ",IMG.eqs],["MAROC",IMG.int]].forEach(([t,im],i)=>{
+ const d=document.createElement("div");d.className="card";d.style.backgroundImage=`url(${im})`;
+ d.style.left=(5+i*11.5)+"%";d.style.top=(7+i*10.5)+"%";d.style.zIndex=10+i;
+ d.innerHTML=`<div class="big">${t}</div><div class="sm">GAMME 0${i+1}</div>`;cStage.appendChild(d);cCards.push(d);});
+/* rendus */
+function rTunnel(p){for(const t of tTiles){let z=-t.i*430-(t.side>0?215:0)+p*2650;
+ const op=Math.min(clamp((z+1850)/500,0,1),clamp((300-z)/240,0,1));
+ t.el.style.opacity=op.toFixed(3);
+ t.el.style.transform=`translate(-50%,-50%) translate3d(${t.side*45}vmin,0,${z}px) rotateY(${t.side*-62}deg)`;}}
+function rOrbit(p,t){const N=oTiles.length,rot=p*2.6+t*0.03;
+ oTiles.forEach((el,i)=>{const a=(i/N)*Math.PI*2+rot,x=Math.cos(a)*37,y=Math.sin(a)*28,dep=(Math.sin(a)+1)/2,s=.42+dep*.8;
+  el.style.zIndex=String(Math.round(dep*30));el.style.opacity=(0.3+dep*0.7).toFixed(3);
+  el.style.transform=`translate(-50%,-50%) translate(${x}vmin,${y}vmin) scale(${s.toFixed(3)}) rotate(${Math.cos(a)*5}deg)`;});}
+function rScatter(p){for(const{el,d}of sBlks){const dy=(0.5-p)*d.sp*190;el.style.transform=`translate3d(0,${dy.toFixed(1)}px,0) rotate(${d.r}deg)`;}}
+const lens=$("#mpFlux .lens");
+function rFlux(p){const max=Math.max(0,track.scrollWidth-lens.clientWidth);
+ track.style.transform=`translate3d(${(-p*max).toFixed(1)}px,0,0)`;
+ const lr=lens.getBoundingClientRect(),cx=lr.left+lr.width/2;
+ fPanels.forEach(pn=>{const r=pn.getBoundingClientRect(),c=r.left+r.width/2,d=clamp(1-Math.abs(c-cx)/(lr.width*0.62),0,1);
+  pn.style.transform=`scale(${(1+d*0.06).toFixed(3)})`;});}
+const wL=$("#mpWaveL"),wR=$("#mpWaveR"),cCard=$("#mpWavy .centerCard");
+function wavePath(left,phase){const pts=[];for(let i=0;i<=24;i++){const y=i*(100/24),w=Math.sin(y*0.11+phase)*3.4+Math.sin(y*0.045-phase*0.7)*2.2,x=left?27+w:73-w;pts.push(`L${x.toFixed(2)},${y.toFixed(1)}`);}
+ return left?`M0,0 ${pts.join(" ")} L0,100 Z`:`M100,0 ${pts.join(" ")} L100,100 Z`;}
+function rWavy(p,t){const ph=p*5.5+t*0.9;wL.setAttribute("d",wavePath(true,ph));wR.setAttribute("d",wavePath(false,ph+1.7));
+ cCard.style.transform=`translateY(${Math.sin(t*1.3)*5}px) rotate(${Math.sin(t*0.7)*1.2}deg)`;}
+function rCascade(p){const gx=-p*36,gy=-p*27;
+ cCards.forEach((el,i)=>{const ex=(1-p)*i*4.5;el.style.transform=`translate(${gx-ex}vmin,${gy-ex*0.75}vmin) rotate(${-7+p*5+i*0.5}deg)`;});}
+const RENDER={mpTunnel:rTunnel,mpOrbit:rOrbit,mpScatter:rScatter,mpFlux:rFlux,mpWavy:rWavy,mpCascade:rCascade};
+/* scènes = modules + grandes sections du site */
+const NAMES={filmHero:"FILM · GLC",maison:"LA MAISON",modeles:"MODÈLES",configurateur:"CONFIGURATEUR",offres:"OFFRES",stock:"STOCK MAROC",classeg:"FILM · CLASSE G",electrique:"ÉLECTRIQUE",univers:"UNIVERS",services:"SERVICES",distributeur:"SHOWROOMS"};
+const scenes=[];
+$$(".mp-scene").forEach(el=>scenes.push({el,name:el.dataset.mpname,cur:0,tgt:0}));
+Object.keys(NAMES).forEach(id=>{const el=document.getElementById(id);if(el)scenes.push({el,name:NAMES[id],cur:0,tgt:0});});
+function prog(el){const r=el.getBoundingClientRect(),total=el.offsetHeight-vh();
+ if(total<=0)return clamp((vh()-r.top)/(vh()+r.height),0,1);
+ return clamp(-r.top/total,0,1);}
+const ctlN=$("#mpCtlName"),ctlF=$("#mpCtlFill"),ctlP=$("#mpCtlPct");
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let t0=performance.now();
+function frame(now){const t=(now-t0)/1000;let act=null;
+ for(const sc of scenes){sc.tgt=prog(sc.el);sc.cur+=(sc.tgt-sc.cur)*(reduce?1:0.085);
+  const fn=RENDER[sc.el.id];if(fn)fn(sc.cur,t);
+  const r=sc.el.getBoundingClientRect();if(r.top<vh()*0.5&&r.bottom>vh()*0.5)act=sc;}
+ if(act){ctlN.textContent=act.name.toUpperCase();const pc=Math.round(act.cur*100);ctlP.textContent=pc+"%";ctlF.style.width=pc+"%";}
+ else ctlN.textContent="MERCEDES";
+ requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+})();
+/* tilt 3D + reflet sur les cartes modèles (appris sur Tanja Web) */
+if(matchMedia("(pointer:fine)").matches){document.querySelectorAll("#modeles .card, #stock .card").forEach(c=>{
+ c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  c.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px)`;});
+ c.addEventListener("pointerleave",()=>{c.style.transform="";});});}
+</script>
+</body></body>
 </html>
