@@ -284,6 +284,23 @@ footer{background:#000;border-top:1px solid var(--ligne)}
 #mpCtlName{font-weight:800;min-width:96px;text-align:center}
 @media(max-width:860px){#mpCtl{bottom:66px}#mpCtl .bar{width:60px}#mpCtlName{min-width:70px}}
 </style>
+
+<style id="r1-css">
+/* R1 · Effects Lab (Lando Norris) : swap Base/Hover meme cadre, sans zoom */
+#modeles .card .ph img.r1-alt,#stock .card .ph img.r1-alt{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+#modeles .card:hover .ph img.r1-alt,#stock .card:hover .ph img.r1-alt,#modeles .card.r1-on .ph img.r1-alt,#stock .card.r1-on .ph img.r1-alt{opacity:1}
+#modeles .card:hover .ph img,#stock .card:hover .ph img{transform:none}
+.r1-shade{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none;background:linear-gradient(180deg,rgba(8,14,32,.28),rgba(8,14,32,0) 45%,rgba(4,6,14,.42))}
+#modeles .card:hover .r1-shade,#stock .card:hover .r1-shade,#modeles .card.r1-on .r1-shade,#stock .card.r1-on .r1-shade{opacity:1}
+.r1-chip{position:absolute;left:12px;bottom:12px;z-index:3;background:rgba(8,10,14,.72);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 12px;font-size:11px;letter-spacing:.22em;pointer-events:none}
+.r1-chip::before{content:"JOUR"}
+#modeles .card:hover .r1-chip::before,#stock .card:hover .r1-chip::before,#modeles .card.r1-on .r1-chip::before,#stock .card.r1-on .r1-chip::before{content:"NUIT"}
+.r1-hint{color:var(--gris);font-size:13.5px;margin:14px 0 0;letter-spacing:.04em}
+.r1-hint b{color:var(--bleu);font-weight:600}
+.r1roll{display:inline-block;overflow:hidden;height:1.3em;vertical-align:bottom}
+.r1roll>span{display:block;transition:transform .35s ease}
+.card .links a:hover .r1roll>span{transform:translateY(-1.3em)}
+</style>
 </head>
 <body>
 
@@ -403,30 +420,31 @@ footer{background:#000;border-top:1px solid var(--ligne)}
     <button data-f="elec">Électriques</button>
     <button data-f="icone">Icônes</button>
   </div>
+  <p class="r1-hint rv">Survolez une carte : <b>même cadre, version nuit</b> — aucun zoom, juste l’autre version de la même image (effet R1 de notre Effects Lab).</p>
   <div class="grid">
     <article class="card rv" data-cat="suv elec">
-      <div class="ph"><img src="assets/hero-card.jpg" alt="Nouveau GLC électrique argent"></div>
+      <div class="ph"><img src="assets/hero-card.jpg" alt="Nouveau GLC électrique argent"><img class="r1-alt" src="assets/hero-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.6) contrast(1.1) saturate(.88)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">SUV · Électrique</div><h3>GLC électrique</h3>
       <p>Le best-seller devient 100 % électrique : 489 ch, jusqu'à 713 km d'autonomie WLTP et la recharge ultra-rapide 800 V.</p>
       <div class="prix"><small>À partir de</small>785 000 MAD</div>
       <div class="links"><a href="#offres">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="berline elec">
-      <div class="ph"><img src="assets/eqs-card.jpg" alt="EQS berline électrique blanche"></div>
+      <div class="ph"><img src="assets/eqs-card.jpg" alt="EQS berline électrique blanche"><img class="r1-alt" src="assets/eqs-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.58) contrast(1.08) saturate(.9)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">Berline · Électrique</div><h3>EQS</h3>
       <p>La Classe S électrique : silhouette d'une fluidité record, MBUX Hyperscreen et jusqu'à 809 km d'autonomie.</p>
       <div class="prix"><small>À partir de</small>1 165 000 MAD</div>
       <div class="links"><a href="#electrique">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="suv icone">
-      <div class="ph"><img src="assets/g-card.jpg" alt="Classe G noir sur route côtière"></div>
+      <div class="ph"><img src="assets/g-card.jpg" alt="Classe G noir sur route côtière"><img class="r1-alt" src="assets/g-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.68) contrast(1.14) saturate(1.05)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">SUV · Icône</div><h3>Classe G</h3>
       <p>Plus forte que le temps. Le G reste le G : silhouette inchangée depuis 1979, capacités tout-terrain légendaires, désormais aussi en électrique.</p>
       <div class="prix"><small>À partir de</small>1 450 000 MAD</div>
       <div class="links"><a href="#classeg">Découvrir</a><a href="#distributeur">Essayer</a></div></div>
     </article>
     <article class="card rv" data-cat="berline">
-      <div class="ph"><img src="assets/hero-card.jpg" alt="Classe C berline" style="filter:hue-rotate(-14deg) saturate(.72) brightness(.92)"></div>
+      <div class="ph"><img src="assets/hero-card.jpg" alt="Classe C berline" style="filter:hue-rotate(-14deg) saturate(.72) brightness(.92)"><img class="r1-alt" src="assets/hero-card.jpg" alt="" aria-hidden="true" style="filter:hue-rotate(-14deg) saturate(.72) brightness(.92) brightness(.6) contrast(1.1) saturate(.88)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">Berline</div><h3>Nouvelle Classe C</h3>
       <p>La berline la plus vendue de la marque se modernise : design athlétique, motorisations électrifiées et MB.OS à bord.</p>
       <div class="prix"><small>À partir de</small>599 000 MAD</div>
@@ -481,13 +499,13 @@ footer{background:#000;border-top:1px solid var(--ligne)}
 <section class="bloc" id="stock" style="padding-top:30px">
   <div class="sec-head rv"><h2 class="titre">Disponibles au Maroc, tout de suite.</h2><p>Trois étoiles prêtes à partir dans le réseau Auto Nejma. Réservez la vôtre avant qu'elle ne roule sans vous.</p></div>
   <div class="stock">
-    <article class="card rv"><div class="ph"><span class="ville-badge">CASABLANCA · CORNICHE</span><img src="assets/hero-card.jpg" alt="GLC électrique en stock à Casablanca"></div>
+    <article class="card rv"><div class="ph"><span class="ville-badge">CASABLANCA · CORNICHE</span><img src="assets/hero-card.jpg" alt="GLC électrique en stock à Casablanca"><img class="r1-alt" src="assets/hero-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.6) contrast(1.1) saturate(.88)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">Stock · Électrique</div><h3>GLC électrique</h3><p>Argent high-tech, Progressive Line. Au flagship de la Corniche, prêt pour livraison immédiate.</p>
       <div class="prix"><small>Prix Maroc</small>785 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
-    <article class="card rv"><div class="ph"><span class="ville-badge">TANGER</span><img src="assets/g-card.jpg" alt="Classe G en stock à Tanger"></div>
+    <article class="card rv"><div class="ph"><span class="ville-badge">TANGER</span><img src="assets/g-card.jpg" alt="Classe G en stock à Tanger"><img class="r1-alt" src="assets/g-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.68) contrast(1.14) saturate(1.05)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">Stock · Icône</div><h3>Classe G</h3><p>Noir obsidienne, intérieur cuir noir. L'icône attend à Tanger — une seule unité.</p>
       <div class="prix"><small>Prix Maroc</small>1 450 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
-    <article class="card rv"><div class="ph"><span class="ville-badge">RABAT</span><img src="assets/eqs-card.jpg" alt="EQS en stock à Rabat"></div>
+    <article class="card rv"><div class="ph"><span class="ville-badge">RABAT</span><img src="assets/eqs-card.jpg" alt="EQS en stock à Rabat"><img class="r1-alt" src="assets/eqs-card.jpg" alt="" aria-hidden="true" style="filter:brightness(.58) contrast(1.08) saturate(.9)"><span class="r1-shade"></span><span class="r1-chip"></span></div>
       <div class="tx"><div class="cat">Stock · Électrique</div><h3>EQS</h3><p>Blanc polaire, MBUX Hyperscreen. La limousine électrique, disponible à Rabat.</p>
       <div class="prix"><small>Prix Maroc</small>1 165 000 MAD</div><div class="links"><a href="#essai">Réserver un essai</a></div></div></article>
   </div>
@@ -848,6 +866,17 @@ if(matchMedia("(pointer:fine)").matches){document.querySelectorAll("#modeles .ca
  c.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
   c.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-4px)`;});
  c.addEventListener("pointerleave",()=>{c.style.transform="";});});}
+</script>
+
+<script id="r1-js">
+/* R1 : letter-roll sur les CTA des cartes + tap-to-swap au tactile */
+document.querySelectorAll("#modeles .card .links a, #stock .card .links a").forEach(a=>{
+  const t=a.textContent.trim(); if(!t||a.querySelector(".r1roll"))return;
+  a.innerHTML='<span class="r1roll"><span>'+t+'<br>'+t+'</span></span>';
+});
+document.querySelectorAll("#modeles .card .ph, #stock .card .ph").forEach(ph=>{
+  ph.addEventListener("click",()=>{const c=ph.closest(".card"); if(c) c.classList.toggle("r1-on");});
+});
 </script>
 </body></body>
 </html>
